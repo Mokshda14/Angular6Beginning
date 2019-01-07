@@ -1,7 +1,19 @@
 <div>
   heroes works!
 
-  <div class="sabc">{{hero.name}}</div>
-
+  <div class="sabc">{{hero.name | uppercase}}</div>
+  <div>
+    <input [(ngModel)]="hero.name" placeholder="name">
+  </div>
   <div class="def">{{hero.id}}</div>
+
+  <div>
+    <ul class="heroes">
+      <li *ngFor="let hero of heroes" [class.selected]="hero === selectedHero" (click)="onSelect(hero)">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </li>
+    </ul>
+  </div>
 </div>
+
+<app-hero-detail [hero]="selectedHero"></app-hero-detail>
